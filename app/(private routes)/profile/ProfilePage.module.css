@@ -1,0 +1,33 @@
+.main {
+  display: flex;
+  justify-content: flex-start;
+  width: 100%;
+  padding-left: 32px;
+  padding-right: 16;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 32px;
+
+  width: 100%;
+  max-width: 100%;
+  margin: 0 auto;
+}
+
+@media (min-width: 768px) {
+  .content {
+    max-width: 768px;
+    margin: 0 auto;
+  }
+}
+
+@media (min-width: 1024px) {
+  .content {
+    max-width: 768px;
+    margin-left: 0;
+    margin-right: auto;
+  }
+}

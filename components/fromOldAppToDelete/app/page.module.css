@@ -1,0 +1,157 @@
+/* =====================
+   PAGE (MOBILE FIRST)
+===================== */
+
+.page {
+  display: flex;
+  justify-content: center;
+
+  min-height: 100vh;
+  padding: 24px;
+
+  font-family: var(--font-family);
+  background-color: var(--color-scheme-background);
+  color: var(--color-scheme-text);
+}
+
+.main {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  gap: 48px;
+
+  background-color: var(--color-scheme-foreground);
+  padding: 48px 24px;
+  border-radius: 24px;
+}
+
+/* =====================
+   INTRO .intro — це контейнер для вступного тексту сторінки.(h1, p, a)
+===================== */
+
+.intro {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.intro h1 {
+  max-width: 100%;
+  font-size: 32px;
+  font-weight: 600;
+  line-height: 40px;
+  letter-spacing: -1.92px;
+
+  font-family: var(--second-family);
+  color: var(--color-neutral-darkest);
+}
+
+.intro p {
+  font-size: 16px;
+  line-height: 28px;
+  color: var(--color-neutral-dark);
+}
+
+.intro a {
+  font-weight: 500;
+  color: var(--color-neutral-darkest);
+}
+
+/* =====================
+   CTAs .ctas = Call To Actions
+(кнопки основних дій на сторінці(кнопка: Увійти
+
+кнопка Зареєструватися
+
+інші основні дії))
+===================== */
+
+.ctas {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: 100%;
+}
+
+.ctas a {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  height: 44px;
+  padding: 0 20px;
+  border-radius: 128px;
+
+  border: 1px solid var(--color-scheme-border);
+  font-size: 14px;
+  font-weight: 500;
+
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+a.primary {
+  background: var(--color-scheme-accent);
+  color: var(--color-neutral-darkest);
+  border-color: transparent;
+}
+
+a.secondary {
+  background: transparent;
+  color: var(--color-neutral-darkest);
+}
+
+/* =====================
+   HOVER (DESKTOP ONLY)
+===================== */
+
+@media (hover: hover) and (pointer: fine) {
+  a.primary:hover {
+    background: var(--color-pastel-pink-dark);
+  }
+
+  a.secondary:hover {
+    background: var(--color-neutral-lightest);
+  }
+}
+
+/* =====================
+   TABLET ≥768px
+===================== */
+
+@media (min-width: 768px) {
+  .page {
+    padding: 40px;
+  }
+
+  .main {
+    padding: 64px 48px;
+  }
+
+  .ctas {
+    flex-direction: row;
+    gap: 16px;
+  }
+}
+
+/* =====================
+   DESKTOP ≥1280px
+===================== */
+
+@media (min-width: 1280px) {
+  .main {
+    max-width: 800px;
+    padding: 120px 60px;
+  }
+
+  .intro h1 {
+    font-size: 40px;
+    line-height: 48px;
+    letter-spacing: -2.4px;
+  }
+
+  .intro p {
+    font-size: 18px;
+    line-height: 32px;
+  }
+}

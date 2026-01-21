@@ -1,0 +1,39 @@
+.header {
+    height: 64px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 16px;
+    background-color: #fff;
+    border-bottom: 1px solid #eee;
+    position: sticky;
+    top: 0;
+    z-index: 90;
+
+    @media (min-width: 1440px) {
+        display: none;
+    }
+
+    &__logo {
+        display: flex;
+        align-items: center;
+        text-decoration: none;
+        cursor: pointer;
+    }
+
+    &__logo_img {
+        width: 105px;
+        height: 45px;
+        color: #333;
+        /* For SVG fill if needed */
+    }
+
+    &__burger {
+        background: none;
+        border: none;
+        font-size: 24px;
+        cursor: pointer;
+        color: #333;
+        padding: 8px;
+    }
+}

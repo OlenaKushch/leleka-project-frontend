@@ -1,0 +1,65 @@
+.form { 
+  display: flex;
+  flex-direction: column;
+  font-family: var(--font-family-base);
+}
+
+.fields {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  margin-top: 24px;
+}
+
+.submit {
+  margin-top: 32px;
+  padding: 12px 24px;
+  background-color: var(--theme-light); 
+  color: var(--color-neutral-darkest);
+  border: none;
+  border-bottom: 4px solid var(--theme-main); 
+  border-radius: 100px;
+  cursor: pointer;
+  font-family: var(--font-family-base); 
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 160%;
+  transition: background-color 0.2s ease, transform 0.1s ease, border-bottom-width 0.1s ease;
+  user-select: none;
+}
+
+.submit:hover:not(:disabled),
+.submit:focus-visible:not(:disabled) {
+  background-color: #FFFFFF;
+  border-bottom: 4px solid var(--opacity-neutral-darkest-15);
+}
+
+.submit:active:not(:disabled) {
+  transform: translateY(2px);
+  border-bottom-width: 2px; 
+  background-color: var(--color-neutral-light);
+}
+
+.submit:disabled {
+  background-color: var(--theme-lighter);
+  opacity: 1; 
+  cursor: not-allowed;
+  pointer-events: none;
+  transform: none;
+  border-bottom-width: 4px solid var(--theme-lightest); 
+}
+
+.inputError,
+.invalidInput {
+  border: 2px solid var(--color-danger); 
+  border-radius: 12px;
+}
+
+.error {
+  font-family: var(--font-family);      
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 160%;
+  color: var(--color-red);
+  margin-top: 4px;
+}

@@ -1,0 +1,21 @@
+.loaderContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 80vh;
+    width: 100%;
+    background-color: transparent;
+}
+
+.loaderContainer :global(.ant-spin-text) {
+    font-family: 'Comfortaa', cursive;
+    color: #FEF1DB;
+    margin-top: 16px;
+    font-size: 16px;
+}
+
+.pageContainer {
+    padding: 16px;
+    width: 100%;
+}

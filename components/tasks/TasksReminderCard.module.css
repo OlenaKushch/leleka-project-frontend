@@ -1,0 +1,166 @@
+.card {
+  background-color: var(--theme-lighter);
+  border-radius: 24px;
+  padding: 16px 24px 32px 24px;
+  /* box-shadow: 0 6px 20px rgba(0, 0, 0, 0.06); */
+
+  
+}
+
+/* ---------- Header ---------- */
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-direction: row;
+}
+
+.title {
+  font-family: var(--font-family-accent);
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 1.4;
+  letter-spacing: 0.01em;
+  color: #000;
+}
+
+.plusBtn {
+  border-radius: 50%;
+  border: none;
+  background-color: transparent;
+  color: #000;
+
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.1s ease;
+  /* margin-top: 32px;
+  margin-right: 32px; */
+}
+
+.plusBtn:hover {
+  transform: scale(1.25);
+}
+
+.plusBtn:active {
+  transform: scale(1.25);
+}
+
+/* ---------- Empty state ---------- */
+
+.emptyBold {
+  font-family: var(--font-family-base);
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 1.6;
+  color: #000;
+}
+
+.emptyText {
+  font-family: var(--font-family-base);
+  font-weight: 400;
+  font-size: 14px;
+
+  line-height: 1.5;
+  color: #000;
+}
+
+.createBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+
+  background-color: var(--theme-main);
+  color: #000000;
+
+  padding: 10px 24px;
+  border-radius: 100px;
+
+  border: none;
+  border-bottom: 4px solid var(--theme-main);
+
+  font-weight: 500;
+  font-size: 16px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+
+  user-select: none;
+}
+
+.createBtn:active {
+  border-bottom-width: 0px;
+  transform: translateY(4px);
+  background-color: var(--theme-main);
+}
+
+.createBtn:hover {
+  background-color: var(--theme-light);
+}
+
+.createBtn:hover {
+  background-color: var(--theme-light);
+}
+
+/* ---------- Task list ---------- */
+
+.list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  font-family: var(--font-family-base);
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 1.6;
+  color: #000;
+}
+
+.item {
+  display: flex;
+  flex-direction: column;
+  
+}
+
+.date {
+  font-family: var(--font-family-base);
+  font-weight: 400;
+  font-size: 12px;
+  color: #000;
+  margin-left: 28px;
+}
+
+.taskRow {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.done {
+  color: #000;
+  text-decoration: line-through;
+
+  font-family: var(--font-family-base);
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 1.5;
+  
+}
+
+.item:last-child {
+  border-bottom: none;
+}
+
+/* ---------- Checkbox ---------- */
+
+.item input[type='checkbox'] {
+  width: 20px;
+  height: 20px;
+  accent-color: #000;
+  cursor: pointer;
+  margin: 0;
+}
+
+.item input[type='checkbox']:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  margin: 0;
+}

@@ -1,0 +1,118 @@
+.backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.25);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+}
+
+.title {
+  font-family: 'Comfortaa', sans-serif;
+  font-weight: 700;
+  font-size: 48px;
+  text-align: center;
+  margin-bottom: 48px;
+  padding: 0 0 24px 0;
+  margin: 0;
+}
+
+.content {
+  max-width: 768px;
+  width: 100%;
+  background: #fff;
+  border-radius: 40px;
+  padding: 64px;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.closeBtn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #000;
+  font-size: 24px;
+  line-height: 1;
+  position: absolute;
+  top: 25px;
+  right: 32px;
+  z-index: 20;
+}
+
+.closeBtn svg {
+    stroke: currentColor;
+    stroke-width: 48px;
+}
+
+.closeBtn:hover {
+    color: #B2B2B2;
+}
+
+.closeBtn:active {
+    color: #ffffff;
+}
+
+
+.loadingOverlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+  backdrop-filter: blur(4px);
+}
+
+.loaderContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  background-color: transparent;
+  z-index: 999999;
+}
+
+.loaderContainer :global(.ant-spin-text) {
+  font-family: 'Comfortaa', cursive;
+  color: #FEF1DB;
+  margin-top: 16px;
+  font-size: 16px;
+}
+
+@media screen and (max-width: 1439px) {
+  .content {
+    padding: 64px 32px;
+    width: 704px;
+  }
+
+  .title {
+    font-size: 36px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .content {
+    padding: 48px 20px;
+    width: 335px;
+  }
+
+  .title {
+    font-size: 36px;
+    padding: 0;
+  }
+
+  .closeBtn {
+    top: 24px;
+    right: 25px;
+  }
+
+  .content {
+    gap: 20px;
+  }
+}

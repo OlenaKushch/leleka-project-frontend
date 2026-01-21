@@ -1,0 +1,35 @@
+.breadcrumbs {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    padding: 24px 32px;
+}
+
+.link {
+    font-family: var(--font-family);
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 160%;
+    text-align: center;
+    color: var(--color-scheme-text);
+    text-decoration: none;
+
+    &:hover {
+        text-decoration: none;
+    }
+}
+
+.separator {
+    display: flex;
+    align-items: center;
+    margin: 0 4px;
+}
+
+.current {
+    font-family: var(--font-family);
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 160%;
+    text-align: center;
+    color: var(--color-neutral);
+}

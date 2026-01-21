@@ -1,0 +1,27 @@
+/*======Mobile styles======*/
+.container {
+  max-width: 375px;
+  display: grid;
+  grid-template-columns: 1fr;
+  padding: 20px;
+  padding-top: 0;
+}
+
+/*======Tablet styles======*/
+@media (min-width: 768px) {
+  .container {
+    max-width: 768px;
+    padding: 32px;
+    padding-top: 0;
+  }
+}
+
+/*======Desctop styles======*/
+
+@media (min-width: 1440px) {
+  .container {
+    max-width: 1128px;
+    /* margin-inline: auto; */
+    margin-left: 0;
+  }
+}

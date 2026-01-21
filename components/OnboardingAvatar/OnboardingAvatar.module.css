@@ -1,0 +1,84 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;          
+  width: 100%;
+  margin-bottom: 32px;
+}
+
+.imageWrapper {
+  width: 160px;
+  height: 160px;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+.image {
+  object-fit: cover;
+}
+
+.input {
+  display: none; 
+}
+
+.button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 179px;
+  height: 42px;
+  padding: 0;
+
+  font-family: var(--font-family);
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 160%;
+
+  color: var(--color-neutral-darkest);
+  text-align: center;
+  white-space: nowrap;
+
+  background-color: var(--color-neutral-lightest);
+  border: none;
+  border-bottom: 4px solid var(--color-border-default);
+  border-radius: 100px;
+
+  cursor: pointer;
+  user-select: none;
+
+  transition:
+    background-color 0.2s ease,
+    transform 0.1s ease,
+    border-bottom-width 0.1s ease;
+}
+
+.button:hover,
+.button:focus-visible {
+  background-color: var(--theme-lighter);
+}
+
+.button:focus-visible {
+  outline: 2px solid var(--color-accent-primary);
+  outline-offset: 2px;
+}
+
+.button:active {
+  transform: translateY(2px);
+  border-bottom-width: 2px;
+  background-color: var(--theme-main);
+}
+
+.button.buttonDisabled,
+.button.buttonDisabled:hover,
+.button.buttonDisabled:active,
+.button.buttonDisabled:focus-visible {
+  background-color: var(--theme-lightest);
+  opacity: 0.5;
+  cursor: not-allowed;
+  pointer-events: none;
+  transform: none;
+  outline: none;
+  border-bottom-width: 4px solid var(--color-neutral-lightest);
+}

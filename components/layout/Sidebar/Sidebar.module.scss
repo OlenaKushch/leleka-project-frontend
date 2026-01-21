@@ -1,0 +1,74 @@
+.sidebar {
+  width: 280px;
+  height: 100vh;
+  position: sticky;
+  top: 0;
+  background-color: var(--color-bg-primary);
+  border-right: 1px solid #E5E7EB;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  z-index: 100;
+
+  @media (max-width: 1439px) {
+    display: none;
+  }
+
+  &__logo {
+    display: flex;
+    align-items: center;
+    margin-bottom: 16px;
+    text-decoration: none;
+    cursor: pointer;
+  }
+
+  &__logo_img {
+    width: 105px;
+    height: 45px;
+    color: #333;
+  }
+
+  &__nav {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    flex: 1;
+  }
+
+  &__link {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 8px;
+    border-radius: 8px;
+    text-decoration: none;
+    transition: all 0.2s;
+
+    /* Typography */
+    font-family: var(--font-family);
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 150%;
+    color: var(--color-scheme-text);
+
+    &:hover {
+      background-color: #fff;
+      box-shadow: 0 0 0 1px #E5E5E5;
+    }
+
+    &.active {
+      background-color: var(--theme-lighter);
+      color: #000;
+      font-weight: 500;
+      border-radius: 8px;
+      padding: 8px;
+      height: 40px;
+      /* width: 268px; - width is controlled by flex container usually, but can be added if strictly needed */
+    }
+  }
+
+  &__footer {
+    padding-top: 24px;
+    border-top: 1px solid #eee;
+  }
+}

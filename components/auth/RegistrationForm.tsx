@@ -1,0 +1,148 @@
+'use client'
+
+import { Formik, Form, Field, ErrorMessage } from 'formik'
+import * as Yup from 'yup'
+import { useRouter } from 'next/navigation'
+import Image from 'next/image'
+import { register } from '@/services/auth.service'
+import { useAuthStore } from '@/store/auth.store'
+import Link from 'next/link'
+import toast from 'react-hot-toast'
+import css from '@/components/auth/RegistrationForm.module.css'
+import AppLogo from '@/components/auth/AppLogo'
+import { GoogleButton } from './GoogleButton'
+
+const validationSchema = Yup.object({
+  name: Yup.string().max(32, 'Максимум 32 символи').required('Обовʼязкове поле'),
+  email: Yup.string()
+    .email('Некоректний email')
+    .max(64, 'Максимум 64 символи')
+    .required('Обовʼязкове поле'),
+  password: Yup.string()
+    .min(8, 'Мінімум 8 символів')
+    .max(128, 'Максимум 128 символів')
+    .required('Обовʼязкове поле'),
+})
+
+export const RegistrationForm = () => {
+  const router = useRouter()
+  const setUser = useAuthStore(state => state.setUser)
+
+  return (
+    <Formik
+      initialValues={{ name: '', email: '', password: '' }}
+      validationSchema={validationSchema}
+      validateOnMount={true}
+      validateOnChange={true}
+      onSubmit={async values => {
+        try {
+          const user = await register(values)
+          setUser(user)
+          if (!user.hasCompletedOnboarding) {
+            router.push('/profile/edit')
+          } else {
+            router.push('/')
+          }
+          } catch (error: unknown) {
+          if (error instanceof Error) {
+            toast.error(error.message)
+          } else {
+            toast.error('Сталася невідома помилка')
+          }
+        }
+      }}
+    >
+      {({ isSubmitting, isValid }) => (
+        <div className={css.auth_wrapper}>
+          <div className={css.auth_form}>
+            <Form>
+              <div className={css.auth_logo}>
+                  <AppLogo className={css.auth_logo_img} />
+              </div>
+              <div className={css.auth_container}>
+                <h1 className={css.auth_title}>Реєстрація</h1>
+                <div className={css.auth_wrap_input}>
+                  <div className={css.auth_field}>
+                    <label htmlFor="name" className={css.auth_label}>
+                      Імʼя<span className={css.auth_required}>*</span>{' '}
+                    </label>
+                    <Field
+                      className={css.auth_input}
+                      name="name"
+                      maxLength={32}
+                      type="text"
+                      placeholder="Ваше імʼя"
+                    ></Field>
+                    <ErrorMessage name="name">
+                      {msg => <div className={css.ui_error}>{msg}</div>}
+                    </ErrorMessage>
+                  </div>
+
+                  <div className={css.auth_field}>
+                    <label htmlFor="email" className={css.auth_label}>
+                      Пошта<span className={css.auth_required}>*</span>{' '}
+                    </label>
+                    <Field
+                      className={css.auth_input}
+                      name="email"
+                      maxLength={64}
+                      type="email"
+                      placeholder="Пошта"
+                    ></Field>
+                    <ErrorMessage name="email">
+                      {msg => <div className={css.ui_error}>{msg}</div>}
+                    </ErrorMessage>
+                  </div>
+
+                  <div className={css.auth_field}>
+                    <label htmlFor="password" className={css.auth_label}>
+                      Пароль<span className={css.auth_required}>*</span>{' '}
+                    </label>
+                    <Field
+                      className={css.auth_input}
+                      name="password"
+                      maxLength={128}
+                      type="password"
+                      placeholder="Пароль"
+                    ></Field>
+                    <ErrorMessage name="password">
+                      {msg => <div className={css.ui_error}>{msg}</div>}
+                    </ErrorMessage>
+                  </div>
+
+                  <button
+                    className={css.auth_button}
+                    type="submit"
+                    disabled={isSubmitting || !isValid}
+                  >
+                    Зареєструватися
+                  </button>
+                  <div className={css.google_button_wrap}>
+                    <GoogleButton mode='register'/>
+                    </div>
+                </div>
+
+                <div className={css.auth_text}>
+                  Ви вже маєте акаунт?
+                  <Link className={css.auth_text_link} href="/auth/login">
+                    Увійти
+                  </Link>
+                </div>
+              </div>
+            </Form>
+          </div>
+          <div className={css.auth_image}>
+            <Image
+              src="/images/twoStorksInTheNest/two_storks_in_the_nest.jpg"
+              alt="Білі лелеки в гнізді"
+              fill
+              priority
+              sizes="50vw"
+              style={{ objectFit: 'contain', objectPosition: 'center' }}
+            />
+          </div>
+        </div>
+      )}
+    </Formik>
+  )
+}

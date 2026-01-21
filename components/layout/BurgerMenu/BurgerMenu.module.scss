@@ -1,0 +1,128 @@
+.drawer {
+    :global(.ant-drawer-header) {
+        display: none !important;
+    }
+
+    :global(.ant-drawer-body) {
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+    }
+
+    :global(.ant-drawer-close) {
+        display: none !important;
+    }
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    padding: 24px;
+}
+
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 16px;
+    width: 280px;
+    height: 32px;
+    padding: 0 0 0 8px;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.logoImg {
+    width: 105px;
+    height: 45px;
+    color: #333;
+}
+
+.closeButton {
+    background: none;
+    border: none;
+    font-size: 28px;
+    color: #000;
+    cursor: pointer;
+    padding: 0;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: opacity 0.2s;
+
+    &:hover {
+        opacity: 0.7;
+    }
+}
+
+.closeIcon {
+    font-size: 24px;
+    color: #000;
+    cursor: pointer;
+}
+
+.nav {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    flex: 1;
+}
+
+.link {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 8px;
+    border-radius: 8px;
+    text-decoration: none;
+    transition: all 0.2s;
+    user-select: none;
+    -webkit-user-select: none;
+    -webkit-tap-highlight-color: transparent;
+    -webkit-touch-callout: none;
+    touch-action: manipulation;
+
+    /* Typography */
+    font-family: var(--font-family);
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 150%;
+    color: var(--color-scheme-text);
+
+    @media (hover: hover) {
+        &:hover {
+            background-color: #fff;
+            box-shadow: 0 0 0 1px #E5E5E5;
+            color: var(--color-scheme-text);
+        }
+    }
+
+    &:active,
+    &:visited {
+        color: var(--color-scheme-text);
+    }
+
+    &.active {
+        background-color: var(--theme-lighter);
+        color: #000;
+        font-weight: 500;
+        border-radius: 8px;
+        padding: 8px;
+        height: 40px;
+    }
+}
+
+.footer {
+    padding-top: 24px;
+    border-top: 1px solid #eee;
+    margin-top: auto;
+}

@@ -1,0 +1,146 @@
+.diaryListContainer {
+  display: flex;
+  padding: 24px 16px;
+  background-color: var(--theme-lighter);
+  border-radius: 32px;
+  margin: 0 20px;
+  height: 100%;
+}
+
+.firstColumn {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  flex: 1;
+  min-width: 0;
+}
+
+.topContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.title {
+  margin: 0;
+  font-family: 'Comfortaa', cursive;
+  font-weight: 700;
+}
+
+.addEntryButton {
+  display: flex;
+  gap: 8px;
+  background-color: var(--theme-lighter);
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  margin: 0;
+  width: 114px;
+  height: 24px;
+  align-items: center;
+  font-family: 'Lato', sans-serif;
+  font-weight: 500;
+  flex-wrap: nowrap;
+  color: var(--color-neutral-darker);
+  transition:
+    color 0.2s ease,
+    background-color 0.2s ease;
+}
+
+.addEntryButton span {
+  color: inherit;
+}
+
+.addEntryButton svg {
+  fill: currentColor;
+}
+
+.addEntryButton:hover {
+  /* color: #ffffff; */
+  background-color: var(--theme-light);
+}
+
+.addEntryButton:active {
+  color: #b2b2b2;
+}
+
+.newEntry {
+  padding: 0;
+  margin: 0;
+}
+
+.addCircle {
+  width: 24px;
+  height: 24px;
+}
+
+.listContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.entryCard {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  background-color: var(--theme-light);
+  padding: 16px;
+  border-radius: 16px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.entryCard:hover {
+  background-color: var(--theme-main);
+}
+
+.entryCard:active {
+  background-color: #b2b2b2;
+}
+
+.entryHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.entryTitle {
+  padding: 0;
+  margin: 0;
+  font-family: 'Lato', sans-serif;
+  font-weight: 600;
+}
+
+.emotionsWrapper {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.emotionTag {
+  background-color: var(--theme-lighter);
+  padding: 2px 12px;
+  border-radius: 100px;
+  font-family: 'Lato', sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+}
+
+@media screen and (min-width: 768px) {
+  .diaryListContainer {
+    margin: 0 32px;
+  }
+}
+
+@media screen and (min-width: 1440px) {
+    .diaryListContainer {
+        width: auto;
+        margin: 0;
+    }
+
+  .newEntry {
+    width: 125px;
+  }
+}

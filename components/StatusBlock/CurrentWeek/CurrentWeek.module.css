@@ -1,0 +1,53 @@
+/* ========== MOBILE ============ */
+
+.statusItem {
+  width: 335px;
+  height: 121px;
+  border-radius: 32px;
+  background-color: var(--theme-lighter);
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 16px;
+  border: 0px solid rgba(0, 0, 0, 0.15);
+}
+
+.text {
+  font-family: var(--font-family-base);
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--color-text-primary);
+}
+
+.value {
+  font-family: var(--font-family-accent);
+  font-weight: 700;
+  font-size: 40px;
+  line-height: 1.2;
+  letter-spacing: 0.01em;
+  color: var(--color-text-primary);
+}
+
+.text,
+.value {
+  margin: 0;
+}
+
+/* ======== TABLET =========== */
+
+@media (min-width: 768px) {
+  .statusItem {
+    height: 105px;
+    width: 336px;
+  }
+}
+
+/* ======== DESKTOP =========== */
+
+@media (min-width: 1440px) {
+  .statusItem {
+    height: 127px;
+    width: 305px;
+  }
+}

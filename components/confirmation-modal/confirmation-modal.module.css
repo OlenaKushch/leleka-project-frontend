@@ -1,0 +1,148 @@
+.backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.25);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+}
+
+.content {
+    position: relative;
+    background-color: #fff;
+    border-radius: 40px;
+    padding: 64px 20px;
+    width: 335px;
+    display: flex;
+    flex-direction: column;
+    gap: 48px;
+}
+
+.closeBtn {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    cursor: pointer;
+    background-color: #fff;
+    border: none;
+    font-size: 13.5px;
+    padding: 5.5px;
+    transition: color 0.2s ease;
+}
+
+.closeBtn svg {
+    stroke: currentColor;
+    stroke-width: 48px;
+}
+
+.closeBtn:hover {
+    color: #B2B2B2;
+}
+
+.closeBtn:active {
+    color: #ffffff;
+}
+
+.title {
+    font-weight: 700;
+    font-size: 36px;
+    font-family: 'Comfortaa', cursive;
+    text-align: center;
+    padding: 0;
+    margin: 0;
+}
+
+.actions {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.btn {
+    border-radius: 100px;
+    border: none;
+    height: 42px;
+    font-family: 'Lato', sans-serif;
+    cursor: pointer;
+    font-weight: 500;
+    font-size: 14px;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 24px;
+}
+
+.cancel {
+    background: var(--color-scheme-foreground-alt);
+    color: #333;
+    border-bottom: 4px solid var(--color-scheme-accent);
+}
+
+.cancel:hover,
+.cancel:focus-visible {
+    background: var(--color-scheme-foreground);
+}
+
+.cancel:active {
+    transform: translateY(1px);
+    border-bottom-width: 2px;
+}
+
+.confirm {
+    background: var(--opacity-neutral-darkest-5);
+    color: #333;
+    border: none;
+    border-bottom: 4px solid var(--opacity-neutral-darkest-15);
+}
+
+.confirm:hover,
+.confirm:focus-visible {
+    background: var(--color-scheme-background);
+}
+
+.confirm:active {
+    transform: translateY(1px);
+    border-bottom-width: 2px;
+}
+
+@media screen and (min-width: 768px) {
+    .content {
+        padding: 64px 32px;
+        width: 704px;
+    }
+
+    .closeBtn {
+        top: 31px;
+        right: 31px;
+    }
+
+    .actions {
+        gap: 24px;
+        flex-direction: row;
+        justify-content: center;
+    }
+
+    .btn {
+        width: 268px;
+    }
+}
+
+@media screen and (min-width: 1440px) {
+    .content {
+        width: 768px;
+        padding: 64px;
+    }
+
+    .title {
+        font-size: 48px;
+    }
+
+    .btn {
+        font-size: 16px;
+    }
+}
