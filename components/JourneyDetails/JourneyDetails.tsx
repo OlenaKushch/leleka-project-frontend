@@ -30,6 +30,11 @@ export default function JourneyDetails({ weekNumber }: JourneyDetailsProps) {
     const fetchData = async () => {
       setLoading(true)
       setError(null)
+      if (tab === 'baby') {
+        setBabyData(null)
+      } else {
+        setMomData(null)
+      }
 
       try {
         const res = await api.get(`/weeks/me/journey/${tab}/${weekNumber}`)

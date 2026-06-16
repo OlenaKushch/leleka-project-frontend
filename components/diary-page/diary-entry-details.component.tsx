@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react'
 import axios from 'axios'
+import toast from 'react-hot-toast'
 import { DiaryEntry, Emotion } from '../../interfaces/diary'
 import { FormOutlined } from '@ant-design/icons'
 import { ConfirmationModal } from '../confirmation-modal/confirmation-modal.component'
@@ -38,7 +39,7 @@ export const DiaryEntryDetails: React.FC<DiaryEntryDetailsProps> = ({
       if (axios.isAxiosError(error)) {
         console.error('Помилка при видаленні:', error.response?.status)
       }
-      alert('Не вдалося видалити запис.')
+      toast.error('Не вдалося видалити запис.')
     }
   }
 

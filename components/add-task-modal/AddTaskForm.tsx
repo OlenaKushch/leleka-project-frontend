@@ -2,7 +2,7 @@
 
 import { Formik, Form, Field, ErrorMessage, FormikHelpers } from 'formik'
 import * as Yup from 'yup'
-import { toast } from 'react-toastify'
+import toast from 'react-hot-toast'
 import styles from './AddTaskForm.module.css'
 import { createTask, updateTask } from '@/services/tasks.service'
 

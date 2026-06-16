@@ -40,16 +40,17 @@ export function useMe() {
 
     if (query.data) {
       setUser(query.data)
-    } else if (query.isFetched && query.data === null) {
+    } else if (query.isFetched && query.data === null && !query.isFetching) {
       clearAuth()
     }
   }, [
-    query.isFetched, 
-    query.data, 
-    query.isLoading, 
+    query.isFetched,
+    query.data,
+    query.isLoading,
+    query.isFetching,
     query.isPlaceholderData,
-    setUser, 
-    clearAuth
+    setUser,
+    clearAuth,
   ])
 
   return query

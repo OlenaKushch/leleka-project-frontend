@@ -60,6 +60,7 @@ export default function OnboardingForm() {
         theme: values.theme,
         dueDate: values.dueDate,
         avatar: newAvatarUrl,
+        hasCompletedOnboarding: true,
       }
 
       return updatedData

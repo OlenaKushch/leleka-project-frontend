@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useFormikContext } from 'formik'
 import Image from 'next/image'
 import styles from './OnboardingAvatar.module.css'
@@ -12,10 +12,22 @@ export interface OnboardingValues {
 export default function OnboardingAvatar() {
   const { values, setFieldValue } = useFormikContext<OnboardingValues>()
   const [isUploading, setIsUploading] = useState(false)
+  const [previewUrl, setPreviewUrl] = useState<string | null>(null)
 
-  const avatarSrc = values.avatar
-    ? URL.createObjectURL(values.avatar)
-    : '/images/unknownAvatarImage/unknown_avatar_Image.jpg'
+  useEffect(() => {
+    if (!values.avatar) {
+      setPreviewUrl(null)
+      return
+    }
+
+    const url = URL.createObjectURL(values.avatar)
+    setPreviewUrl(url)
+
+    return () => URL.revokeObjectURL(url)
+  }, [values.avatar])
+
+  const avatarSrc =
+    previewUrl ?? '/images/unknownAvatarImage/unknown_avatar_Image.jpg'
 
   const handleFileChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.currentTarget.files?.[0] || null

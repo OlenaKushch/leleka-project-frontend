@@ -3,6 +3,7 @@
 import React, { useEffect, useId, useMemo, useRef, useState } from 'react'
 import { Field, Form, Formik, ErrorMessage, FormikHelpers } from 'formik'
 import * as Yup from 'yup'
+import toast from 'react-hot-toast'
 import axios from 'axios'
 import { api } from '@/app/api/client'
 import { Emotion, DiaryEntry } from '@/interfaces/diary'
@@ -33,6 +34,7 @@ export default function AddDiaryEntryForm({
   isEdit = false,
   onSubmitSuccess,
   onClose,
+  setLoading,
 }: AddDiaryEntryFormProps) {
   const fieldId = useId()
   const [availableEmotions, setAvailableEmotions] = useState<Emotion[]>([])
@@ -83,6 +85,7 @@ export default function AddDiaryEntryForm({
   }, [availableEmotions])
 
   const handleSubmit = async (values: FormValues, { setSubmitting }: FormikHelpers<FormValues>) => {
+    setLoading(true)
     try {
       let response
 
@@ -96,9 +99,10 @@ export default function AddDiaryEntryForm({
       onClose()
     } catch (error: unknown) {
       if (axios.isAxiosError(error)) {
-        alert(error.response?.status === 401 ? 'Авторизуйтесь знову' : 'Помилка збереження')
+        toast.error(error.response?.status === 401 ? 'Авторизуйтесь знову' : 'Помилка збереження')
       }
     } finally {
+      setLoading(false)
       setSubmitting(false)
     }
   }

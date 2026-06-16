@@ -1,6 +1,7 @@
 'use client'
 
 import { useState } from 'react'
+import { useProtectedRoute } from '@/hooks/useProtectedRoute'
 import WeekSelector from '@/components/WeekSelector/WeekSelector'
 import JourneyDetails from '@/components/JourneyDetails/JourneyDetails'
 import { GreetingBlock } from '@/components/GreetingBlock/GreetingBlock'
@@ -13,6 +14,8 @@ interface PageProps {
 }
 
 export default function JourneyPage({ params }: PageProps) {
+  useProtectedRoute()
+
   const weekNum = Number(params.weekNumber)
 
   const [selectedWeek, setSelectedWeek] = useState<number>(weekNum)

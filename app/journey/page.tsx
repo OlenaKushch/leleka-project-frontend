@@ -1,6 +1,7 @@
 'use client'
 
 import React, { useEffect, useState } from 'react'
+import { useProtectedRoute } from '@/hooks/useProtectedRoute'
 import { GreetingBlock } from '@/components/GreetingBlock/GreetingBlock'
 import JourneyDetails from '@/components/JourneyDetails/JourneyDetails'
 import WeekSelector from '@/components/WeekSelector/WeekSelector'
@@ -10,6 +11,8 @@ import type { WeekData } from '@/types/babyData'
 import { Loader } from '@/components/Loader/Loader'
 
 export default function JourneyPage() {
+  useProtectedRoute()
+
   const [currentWeek, setCurrentWeek] = useState<number | null>(null)
   const [selectedWeek, setSelectedWeek] = useState<number | null>(null)
   const [error, setError] = useState<string | null>(null)
