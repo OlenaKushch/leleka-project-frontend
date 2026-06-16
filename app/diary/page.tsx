@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react'
 import axios from 'axios'
+import { useProtectedRoute } from '@/hooks/useProtectedRoute'
 import { DiaryService } from '@/services/diary.service'
 import { DiaryList } from '@/components/diary-page/diary-list.component'
 import { DiaryEntryDetails } from '@/components/diary-page/diary-entry-details.component'
@@ -11,6 +12,8 @@ import { DiaryEntry, Emotion } from '@/interfaces/diary'
 import styles from './styles.module.css'
 
 export default function DiaryPage() {
+  useProtectedRoute()
+
   const [entries, setEntries] = useState<DiaryEntry[]>([])
   const [allEmotions, setAllEmotions] = useState<Emotion[]>([])
   const [selectedEntry, setSelectedEntry] = useState<DiaryEntry | null>(null)
@@ -23,8 +26,6 @@ export default function DiaryPage() {
       setIsDesktop(desktop)
       if (!desktop) {
         setSelectedEntry(null)
-      } else if (desktop && !selectedEntry && entries.length > 0) {
-        setSelectedEntry(entries[0])
       }
     }
 
@@ -32,7 +33,13 @@ export default function DiaryPage() {
 
     window.addEventListener('resize', handleResize)
     return () => window.removeEventListener('resize', handleResize)
-  })
+  }, [])
+
+  useEffect(() => {
+    if (isDesktop && !selectedEntry && entries.length > 0) {
+      setSelectedEntry(entries[0])
+    }
+  }, [isDesktop, entries, selectedEntry])
 
   useEffect(() => {
     let isIgnore = false

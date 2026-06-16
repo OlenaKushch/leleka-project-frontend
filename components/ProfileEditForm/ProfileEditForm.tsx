@@ -76,7 +76,6 @@ export const ProfileEditForm = () => {
       if (user) {
         setUser({ ...user, ...updatedVars })
       }
-      toast.success('Профіль оновлено')
     },
     onError: error => toast.error(error.message),
   })
@@ -111,6 +110,8 @@ export const ProfileEditForm = () => {
         if (payload.email) {
           sendVerificationEmail(payload.email).catch((err: Error) => toast.error(err.message))
           toast.success('Лист для верифікації надіслано на нову пошту')
+        } else {
+          toast.success('Профіль оновлено')
         }
       },
       onSettled: () => setSubmitting(false),

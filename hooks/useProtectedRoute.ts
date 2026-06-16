@@ -1,10 +1,9 @@
 'use client'
 
 import { useEffect } from 'react'
-import { useRouter, usePathname } from 'next/navigation'
+import { useRouter, usePathname, useSearchParams } from 'next/navigation'
 import { useAuthStore } from '@/store/auth.store'
-
-const PUBLIC_ROUTES = ['/auth/login', '/auth/register']
+import { isPublicAuthRoute } from '@/lib/routes'
 
 export const useProtectedRoute = () => {
   const { isAuthenticated, hydrated } = useAuthStore()
@@ -14,7 +13,7 @@ export const useProtectedRoute = () => {
   useEffect(() => {
     if (!hydrated) return
 
-    const isPublic = PUBLIC_ROUTES.some(route => pathname.startsWith(route))
+    const isPublic = isPublicAuthRoute(pathname)
 
     if (!isAuthenticated && !isPublic) {
       router.replace('/auth/login')
@@ -24,4 +23,25 @@ export const useProtectedRoute = () => {
       router.replace('/')
     }
   }, [hydrated, isAuthenticated, pathname, router])
+}
+
+export const useAuthErrorToast = (showError: (message: string) => void) => {
+  const searchParams = useSearchParams()
+  const router = useRouter()
+  const pathname = usePathname()
+
+  useEffect(() => {
+    const error = searchParams.get('error')
+    const message = searchParams.get('message')
+
+    if (error === 'google' && message) {
+      showError(message)
+
+      const params = new URLSearchParams(searchParams.toString())
+      params.delete('error')
+      params.delete('message')
+      const query = params.toString()
+      router.replace(query ? `${pathname}?${query}` : pathname)
+    }
+  }, [searchParams, router, pathname, showError])
 }

@@ -4,7 +4,9 @@ import { Formik, Form, Field, ErrorMessage } from 'formik'
 import * as Yup from 'yup'
 import { useRouter } from 'next/navigation'
 import Image from 'next/image'
+import { useQueryClient } from '@tanstack/react-query'
 import { register } from '@/services/auth.service'
+import { applyAuthSession } from '@/lib/authSession'
 import { useAuthStore } from '@/store/auth.store'
 import Link from 'next/link'
 import toast from 'react-hot-toast'
@@ -26,6 +28,7 @@ const validationSchema = Yup.object({
 
 export const RegistrationForm = () => {
   const router = useRouter()
+  const queryClient = useQueryClient()
   const setUser = useAuthStore(state => state.setUser)
 
   return (
@@ -37,6 +40,7 @@ export const RegistrationForm = () => {
       onSubmit={async values => {
         try {
           const user = await register(values)
+          await applyAuthSession(queryClient, user)
           setUser(user)
           if (!user.hasCompletedOnboarding) {
             router.push('/profile/edit')
