@@ -3,7 +3,7 @@
 import { useEffect } from 'react'
 import AddTaskForm from './AddTaskForm'
 import styles from './AddTaskModal.module.css'
-import { CloseOutlined } from '@ant-design/icons'
+import { CloseButton } from '@/components/ui/CloseButton'
 
 interface AddTaskModalProps {
   isOpen: boolean
@@ -43,9 +43,7 @@ const AddTaskModal = ({ isOpen, onClose, taskToEdit, onTaskSaved }: AddTaskModal
   return (
     <div className={styles.backdrop} onClick={e => e.target === e.currentTarget && onClose()}>
       <div className={styles.modal}>
-        <button type="button" className={styles.closeBtn} onClick={onClose}>
-          <CloseOutlined />
-        </button>
+        <CloseButton className={styles.closeBtn} onClick={onClose} />
         <h2 className={styles.title}>{taskToEdit ? 'Редагувати завдання' : 'Нове завдання'}</h2>
         <AddTaskForm taskToEdit={taskToEdit} onTaskSaved={handleSuccess} />
       </div>

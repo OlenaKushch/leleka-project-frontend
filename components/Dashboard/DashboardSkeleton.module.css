@@ -1,0 +1,74 @@
+.container {
+  max-width: 375px;
+  padding: 0 20px;
+  margin-inline: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.column {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.left,
+.right {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.greeting,
+.block,
+.imageBlock {
+  border-radius: 16px;
+  background: linear-gradient(90deg, #f0f0f0 25%, #e8e8e8 50%, #f0f0f0 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.2s ease-in-out infinite;
+}
+
+.greeting {
+  height: 40px;
+  width: 70%;
+}
+
+.block {
+  height: 120px;
+}
+
+.imageBlock {
+  height: 320px;
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+@media (min-width: 768px) {
+  .container {
+    max-width: 768px;
+    padding: 0 32px;
+  }
+}
+
+@media (min-width: 1440px) {
+  .container {
+    max-width: 1128px;
+  }
+
+  .column {
+    flex-direction: row;
+    gap: 32px;
+  }
+
+  .right {
+    flex: 0 0 390px;
+  }
+}

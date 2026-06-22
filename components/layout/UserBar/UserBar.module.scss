@@ -13,6 +13,12 @@
         flex: 1;
     }
 
+    &__avatar {
+        border-radius: 50%;
+        object-fit: cover;
+        flex-shrink: 0;
+    }
+
     &__details {
         display: flex;
         flex-direction: column;

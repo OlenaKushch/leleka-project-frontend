@@ -10,29 +10,25 @@ import { apiClient } from '@/lib/apiClient'
 export function useMe() {
   const setUser = useAuthStore(s => s.setUser)
   const clearAuth = useAuthStore(s => s.clearAuth)
+  const isAuthenticated = useAuthStore(s => s.isAuthenticated)
+  const hydrated = useAuthStore(s => s.hydrated)
 
   const query = useQuery<User | null>({
     queryKey: ['me'],
-    
     queryFn: async (): Promise<User | null> => {
       try {
         const { data } = await apiClient.get<{ user?: User } & User>('/users/me')
-        
         return data?.user ?? data
       } catch (error: unknown) {
-        if (axios.isAxiosError(error)) {
-          if (error.response?.status === 401) {
-            return null
-          }
+        if (axios.isAxiosError(error) && error.response?.status === 401) {
+          return null
         }
-
         throw error
       }
     },
-
     retry: false,
-    staleTime: Infinity, 
-    enabled: true,
+    staleTime: Infinity,
+    enabled: hydrated && isAuthenticated,
   })
 
   useEffect(() => {

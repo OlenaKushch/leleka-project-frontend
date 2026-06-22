@@ -27,6 +27,25 @@
   gap: 32px;
 }
 
+.errorState {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 24px;
+  border-radius: 16px;
+  background: var(--theme-lighter, #fef1db);
+}
+
+.errorState button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 999px;
+  background: var(--theme-primary, #f5a623);
+  cursor: pointer;
+  font-family: var(--font-family);
+}
+
 /*======Tablet styles======*/
 @media (min-width: 768px) {
   .container {

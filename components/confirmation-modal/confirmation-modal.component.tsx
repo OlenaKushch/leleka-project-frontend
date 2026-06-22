@@ -1,7 +1,7 @@
 'use client'
 
 import React, { useEffect } from 'react'
-import { CloseOutlined } from '@ant-design/icons'
+import { CloseButton } from '@/components/ui/CloseButton'
 import styles from './confirmation-modal.module.css'
 
 interface ConfirmationModalProps {
@@ -40,9 +40,7 @@ export const ConfirmationModal: React.FC<ConfirmationModalProps> = ({
   return (
     <div className={styles.backdrop} onClick={onCancel}>
       <div className={styles.content} onClick={e => e.stopPropagation()}>
-        <button className={styles.closeBtn} onClick={onCancel}>
-          <CloseOutlined />
-        </button>
+        <CloseButton className={styles.closeBtn} onClick={onCancel} />
 
         <h2 className={styles.title}>{title}</h2>
         {description && <p className={styles.description}>{description}</p>}

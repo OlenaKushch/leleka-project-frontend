@@ -1,17 +1,13 @@
 'use client'
 
-import { useState, useEffect, useCallback } from 'react'
+import { useEffect, useState, useCallback } from 'react'
 import { useRouter, useParams } from 'next/navigation'
-import axios from 'axios'
-import { Spin } from 'antd'
-import { LoadingOutlined } from '@ant-design/icons'
 import { DiaryService } from '@/services/diary.service'
 import { DiaryEntryDetails } from '@/components/diary-page/diary-entry-details.component'
 import { AddDiaryEntryModal } from '@/components/add-diary-entry-modal/AddDiaryEntryModal'
 import { DiaryEntry, Emotion } from '@/interfaces/diary'
+import { Loader } from '@/components/Loader/Loader'
 import styles from './styles.module.css'
-
-const antIcon = <LoadingOutlined style={{ fontSize: 48, color: '#FEF1DB' }} spin />
 
 export default function DiaryEntryPage() {
   const params = useParams()
@@ -30,7 +26,6 @@ export default function DiaryEntryPage() {
     }
 
     handleResize()
-
     window.addEventListener('resize', handleResize)
     return () => window.removeEventListener('resize', handleResize)
   }, [router])
@@ -50,10 +45,6 @@ export default function DiaryEntryPage() {
       } else {
         router.push('/diary')
       }
-    } catch (err: unknown) {
-      if (axios.isAxiosError(err)) {
-        console.error('Помилка завантаження:', err.response?.status)
-      }
     } finally {
       setLoading(false)
     }
@@ -71,7 +62,7 @@ export default function DiaryEntryPage() {
   if (loading) {
     return (
       <div className={styles.loaderContainer}>
-        <Spin indicator={antIcon} tip="Завантажуємо запис..." />
+        <Loader variant="fullscreen" />
       </div>
     )
   }
@@ -84,9 +75,7 @@ export default function DiaryEntryPage() {
         entry={entry}
         allEmotions={allEmotions}
         onDeleteSuccess={() => router.push('/diary')}
-        onEditTrigger={() => {
-          setIsEditModalOpen(true)
-        }}
+        onEditTrigger={() => setIsEditModalOpen(true)}
       />
 
       <AddDiaryEntryModal

@@ -1,5 +1,5 @@
 import axios, { AxiosError, AxiosInstance } from 'axios'
-import { API_URL } from '@/lib/apiConfig'
+import { API_URL, API_TIMEOUT_MS } from '@/lib/apiConfig'
 import { apiError } from '@/utils/error'
 
 interface ApiErrorResponse {
@@ -11,6 +11,11 @@ function applyErrorInterceptor(instance: AxiosInstance): AxiosInstance {
   instance.interceptors.response.use(
     response => response,
     (error: AxiosError<ApiErrorResponse>) => {
+      if (error.code === 'ECONNABORTED') {
+        error.message =
+          'Сервер довго не відповідає. Можливо, він прокидається — спробуйте ще раз через хвилину.'
+      }
+
       const backendMessage = error.response?.data?.message || error.response?.data?.error
 
       if (backendMessage && apiError[backendMessage]) {
@@ -29,6 +34,7 @@ function applyErrorInterceptor(instance: AxiosInstance): AxiosInstance {
 export const apiClient = applyErrorInterceptor(
   axios.create({
     baseURL: API_URL,
+    timeout: API_TIMEOUT_MS,
     withCredentials: true,
     headers: {
       'Content-Type': 'application/json',
@@ -36,5 +42,4 @@ export const apiClient = applyErrorInterceptor(
   })
 )
 
-/** @deprecated Use `apiClient` — kept for gradual migration of imports */
 export const api = apiClient

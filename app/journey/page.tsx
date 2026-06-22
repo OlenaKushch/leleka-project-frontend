@@ -1,42 +1,36 @@
 'use client'
 
-import React, { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { useProtectedRoute } from '@/hooks/useProtectedRoute'
 import { GreetingBlock } from '@/components/GreetingBlock/GreetingBlock'
 import JourneyDetails from '@/components/JourneyDetails/JourneyDetails'
 import WeekSelector from '@/components/WeekSelector/WeekSelector'
-import css from './JourneyPage.module.css'
-import { apiClient } from '@/lib/apiClient'
-import type { WeekData } from '@/types/babyData'
 import { Loader } from '@/components/Loader/Loader'
+import { useMyDayWeek } from '@/hooks/useWeekData'
+import css from './JourneyPage.module.css'
 
 export default function JourneyPage() {
   useProtectedRoute()
 
-  const [currentWeek, setCurrentWeek] = useState<number | null>(null)
+  const { data, isLoading, isError, refetch } = useMyDayWeek()
   const [selectedWeek, setSelectedWeek] = useState<number | null>(null)
-  const [error, setError] = useState<string | null>(null)
 
-  useEffect(() => {
-    const loadWeek = async () => {
-      setError(null)
-      const res = await apiClient.get<WeekData>('/weeks/me/my-day')
-      setCurrentWeek(res.data.weekNumber)
-      setSelectedWeek(res.data.weekNumber)
-    }
+  const currentWeek = data?.weekNumber ?? null
+  const activeWeek = selectedWeek ?? currentWeek
 
-    loadWeek().catch((e) => {
-      console.error(e)
-      setError('Не вдалося завантажити поточний тиждень')
-    })
-  }, [])
-
-  if (error) {
-    return <div style={{ padding: 16 }}>{error}</div>
+  if (isLoading) {
+    return <Loader variant="fullscreen" />
   }
 
-  if (currentWeek === null || selectedWeek === null) {
-    return <Loader />
+  if (isError || currentWeek === null || activeWeek === null) {
+    return (
+      <div className={css.errorState}>
+        <p>Не вдалося завантажити поточний тиждень.</p>
+        <button type="button" onClick={() => refetch()}>
+          Спробувати ще раз
+        </button>
+      </div>
+    )
   }
 
   return (
@@ -44,10 +38,10 @@ export default function JourneyPage() {
       <GreetingBlock />
       <WeekSelector
         currentWeek={currentWeek}
-        selectedWeek={selectedWeek}
+        selectedWeek={activeWeek}
         onWeekSelect={setSelectedWeek}
       />
-      <JourneyDetails weekNumber={selectedWeek} />
+      <JourneyDetails weekNumber={activeWeek} />
     </div>
   )
 }

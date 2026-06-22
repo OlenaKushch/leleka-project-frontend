@@ -1,13 +1,11 @@
 'use client'
 
-import React, { useEffect, useState } from 'react'
-import { CloseOutlined, LoadingOutlined } from '@ant-design/icons'
-import { Spin } from 'antd'
+import React, { useEffect } from 'react'
+import { CloseButton } from '@/components/ui/CloseButton'
+import { Loader } from '@/components/Loader/Loader'
 import { DiaryEntry } from '@/interfaces/diary'
 import AddDiaryEntryForm from './AddDiaryEntryForm'
 import styles from './add-diary-entry-modal.module.scss'
-
-const antIcon = <LoadingOutlined style={{ fontSize: 48, color: '#FEF1DB' }} spin />
 
 interface AddDiaryEntryModalProps {
   isOpen: boolean
@@ -24,7 +22,7 @@ export const AddDiaryEntryModal: React.FC<AddDiaryEntryModalProps> = ({
   isEdit = false,
   initialData = null,
 }) => {
-  const [isLoading, setIsLoading] = useState(false)
+  const [isLoading, setIsLoading] = React.useState(false)
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
@@ -50,19 +48,13 @@ export const AddDiaryEntryModal: React.FC<AddDiaryEntryModalProps> = ({
         {isLoading && (
           <div className={styles.loadingOverlay}>
             <div className={styles.loaderContainer}>
-              <Spin indicator={antIcon} tip="Зберігаємо..." />
+              <Loader variant="inline" />
+              <p>Зберігаємо...</p>
             </div>
           </div>
         )}
 
-        <button
-          className={styles.closeBtn}
-          onClick={onClose}
-          aria-label="Закрити"
-          disabled={isLoading}
-        >
-          <CloseOutlined />
-        </button>
+        <CloseButton className={styles.closeBtn} onClick={onClose} disabled={isLoading} />
 
         <h2 className={styles.title}>{isEdit ? 'Редагувати запис' : 'Новий запис'}</h2>
 

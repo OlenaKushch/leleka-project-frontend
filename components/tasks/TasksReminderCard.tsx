@@ -38,7 +38,10 @@ const TasksList = () => {
   if (!hydrated) {
     return (
       <section className={styles.card}>
-        <p>Завантаження сесії...</p>
+        <div className={styles.header}>
+          <h3 className={styles.title}>Важливі завдання</h3>
+        </div>
+        <p className={styles.emptyText}>Завантаження...</p>
       </section>
     )
   }

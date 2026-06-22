@@ -22,7 +22,7 @@ export const BabyTodayCard = ({
     <section className={css.card}>
       <h2 className={css.title}>Малюк сьогодні</h2>
       <div className={css.imageWrapper}>
-        <Image src={image} alt={imageAlt} fill sizes="(max-width: 767px) 287px, 273px" priority />
+        <Image src={image} alt={imageAlt} fill sizes="(max-width: 767px) 287px, 273px" />
       </div>
       <div className={css.stats}>
         <p>

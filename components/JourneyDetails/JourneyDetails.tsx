@@ -1,7 +1,6 @@
 'use client'
 import React, { useEffect, useState } from 'react'
 import Image from 'next/image'
-import TasksReminderCard from '../tasks/TasksReminderCard'
 import css from './JourneyDetails.module.css'
 import { apiClient } from '@/lib/apiClient'
 import { Loader } from '@/components/Loader/Loader'
@@ -38,7 +37,6 @@ export default function JourneyDetails({ weekNumber }: JourneyDetailsProps) {
 
       try {
         const res = await apiClient.get(`/weeks/me/journey/${tab}/${weekNumber}`)
-        console.log('DATA FROM BACK:', res.data)
         if (tab === 'baby') {
           setBabyData(res.data)
         } else {
@@ -167,8 +165,6 @@ export default function JourneyDetails({ weekNumber }: JourneyDetailsProps) {
               <p className={css.categorydescr}>{momData?.comfortTips[2].tip}</p>
             </div>
           </div>
-
-          <TasksReminderCard />
         </div>
       )}
     </section>
