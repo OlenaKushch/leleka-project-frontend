@@ -2,6 +2,7 @@ import { create } from 'zustand'
 import { persist } from 'zustand/middleware'
 import type { User } from '../types/user'
 import { isValidUser } from '@/lib/authValidation'
+import { clearAccessToken } from '@/lib/accessToken'
 
 export interface AuthState {
   user: User | null
@@ -37,11 +38,13 @@ export const useAuthStore = create<AuthState>()(
           }
         }),
 
-      clearAuth: () =>
+      clearAuth: () => {
+        clearAccessToken()
         set({
           user: null,
           isAuthenticated: false,
-        }),
+        })
+      },
 
       setHydrated: (state) => set({ hydrated: state }),
     }),
